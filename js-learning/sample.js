@@ -1,8 +1,5 @@
-document.querySelector('.parent').addEventListener('click',function(){
-    console.log("parent clicked")
-})
-
-document.querySelector('.child').addEventListener('click',function(){
-    console.log("child clicked")
-    event.stopPropagation()
-})
+const h1=document.getElementById('title')
+h1.textContent="Welcome Sowmiya"
+h1.style.color="blue"
+h1.style.fontSize="40px"
+h1.style.background="yellow"
