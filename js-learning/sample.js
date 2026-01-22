@@ -1,7 +1,8 @@
-const pTag=document.createElement("p")
-pTag.innerText="This is a paragraph added through js"
+const child=document.querySelector("#child")
+child.addEventListener("click",()=>{
+    console.log("child Clicked")
+})
 
-const cont=document.querySelector("#container")
-cont.appendChild(pTag)
-
-cont.remove(pTag)
+document.getElementById("parent").addEventListener("click", () => {
+  console.log("Parent clicked");
+});
