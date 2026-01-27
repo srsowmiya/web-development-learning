@@ -1,8 +1,3 @@
-const child=document.querySelector("#child")
-child.addEventListener("click",()=>{
-    console.log("child Clicked")
-})
-
-document.getElementById("parent").addEventListener("click", () => {
-  console.log("Parent clicked");
+document.getElementById("list").addEventListener("click", (e) => {
+  console.log(e.target.innerText);
 });
