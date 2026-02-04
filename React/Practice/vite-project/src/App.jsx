@@ -1,11 +1,20 @@
 import React from 'react'
-import Child from './Child'
+import { useState } from 'react';
 
 const App = () => {
+    const[val,setValue]=useState(0)
+    function add(){
+setValue(prevVal=>prevVal+2)
+setValue(prevVal=>prevVal+2)
+    }
+    function subtract(){
+setValue(prevVal=>prevVal-1)
+    }
   return (
     <div>
-      <Child name="sowmiya" age={20}/>
-      <Child name="sharveshi" age={20}/>
+        <button onClick={add } >+</button>
+        <p>{val}</p>
+        <button onClick={subtract}>-</button>
     </div>
   )
 }
