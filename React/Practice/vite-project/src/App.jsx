@@ -1,21 +1,15 @@
 import React from 'react'
-import { useState } from 'react';
-
+import Login from './Login'
+import Signup from './Signup'
+import {Route,Routes,BrowserRouter} from 'react-router-dom'
 const App = () => {
-    const[val,setValue]=useState(0)
-    function add(){
-setValue(prevVal=>prevVal+2)
-setValue(prevVal=>prevVal+2)
-    }
-    function subtract(){
-setValue(prevVal=>prevVal-1)
-    }
   return (
-    <div>
-        <button onClick={add } >+</button>
-        <p>{val}</p>
-        <button onClick={subtract}>-</button>
-    </div>
+    <BrowserRouter>
+        <Routes>
+            <Route path="/login" element={<Login/>}> </Route>
+            <Route path='/' element={<Signup/>}/>
+        </Routes>
+    </BrowserRouter>
   )
 }
 
