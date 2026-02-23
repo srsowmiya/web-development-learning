@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
+import Home from './Home'
 
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-
+    let navigate=useNavigate()
     
     const handleLogin = async (e) => {
         e.preventDefault(); 
@@ -22,14 +23,11 @@ const Login = () => {
               body:JSON.stringify(userData)
             })
 
-            const ans=await response.json()
+            await response.json()
             if (response.ok) {
-            alert(ans.message); 
+              navigate('/home')
           
-        } else {
-          
-            alert(ans.message); 
-        }
+            }
         }
         catch(e){
             alert(e.message)
