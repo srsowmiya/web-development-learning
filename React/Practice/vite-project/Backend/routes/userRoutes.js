@@ -1,40 +1,41 @@
-const express=require('express')
-const userSchema=require('../model/user')
+const express = require('express');
+const User = require('../model/user'); 
+const router = express.Router();
 
-const router=express.Router()
 
-router.post('/signup',async(req,res)=>{
-    try{
-        const {name,email,password}=req.body
-        const newUser= new userSchema({
-            name,
-            email,
-            password
-    })
-    await newUser.save()
-    res.status(201).json({message:"registration successfull"})
+router.post('/signup', async (req, res) => {
+    try {
+        const { name, email, password } = req.body;
+        const newUser = new User({ name, email, password });
+        await newUser.save();
+        return res.status(201).json({ message: "registration successful" });
+    } catch (error) {
+        return res.status(400).json({ message: "registration failed", error: error.message });
     }
-    catch(error){
-        res.status(400).json({message:"registration failed",error:error.message})
-    }
-})
+});
 
-router.post('/login',async(req,res)=>{
-    try{
-        const {email,password}=req.body
+router.post('/login', async (req, res) => {
+    try {
+        const { email, password } = req.body;
 
-        const user= await userSchema.findOne({email})
+        const user = await User.findOne({ email });
 
-        if(!user)
-            res.status(404).send({message:'user not found!'})
-        if(user.password!==password)
-            res.status(401).json({message:'invalid password'})
+
+        if (!user) {
+            return res.status(404).json({ message: 'user not found!' }); 
+        }
+
+        if (user.password !== password) {
+            return res.status(401).json({ message: 'invalid password' });
+        }
         
-        res.send({message:'login successfull'})
-    }
-    catch(e){
-        res.send({message:e.message})
-    }
-})
+        
+        return res.status(200).json({ message: 'login successful' });
 
-module.exports=router
+    } catch (e) {
+        
+        return res.status(500).json({ message: e.message });
+    }
+});
+
+module.exports = router;

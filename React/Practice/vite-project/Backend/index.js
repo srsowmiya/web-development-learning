@@ -7,9 +7,7 @@ const app=express()
 app.use(cors())
 app.use(express.json())
 
-app.use('/signup',user)
-
-app.use('/login',)
+app.use('/api',user)
 
 
 
