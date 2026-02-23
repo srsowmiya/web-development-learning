@@ -23,11 +23,16 @@ const Login = () => {
               body:JSON.stringify(userData)
             })
 
-            await response.json()
-            if (response.ok) {
-              navigate('/home')
+            const ans=await response.json()
+              if (response.ok) 
+              {
+                localStorage.setItem('token', ans.token);
+                alert("Login Successful!");
+                navigate('/home')
+              }
+
           
-            }
+            
         }
         catch(e){
             alert(e.message)
