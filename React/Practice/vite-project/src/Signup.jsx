@@ -6,11 +6,30 @@ const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSignup = (e) => {
-        e.preventDefault();
-        const userData = { name, email, password };
-        console.log(userData);
-    };
+    const handleSignup = async (e) => {
+    e.preventDefault();
+    const userData = { name, email, password };
+
+    try {
+        const response = await fetch('http://localhost:5000/signup/signup', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(userData),
+        });
+
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert('Registration Successful!');
+        } else {
+            
+            alert(data.message || 'Registration failed');
+        }
+    } catch (e) {
+        alert("Connection Error: " + e.message);
+    }
+};
 
     return (
         <div>

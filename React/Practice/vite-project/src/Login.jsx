@@ -6,9 +6,34 @@ const Login = () => {
     const [password, setPassword] = useState("")
 
     
-    const handleLogin = (e) => {
-        e.preventDefault(); // This stops the browser reload!
-        console.log("Logging in with:", email, password);
+    const handleLogin = async (e) => {
+        e.preventDefault(); 
+
+        const userData={
+          email,password
+        }
+
+        try{
+            const response = await fetch('https:/localhost:5000/login/login',{
+              method:'POST',
+              headers:{
+                'content-type':'application/json'
+              },
+              body:JSON.stringify(userData)
+            })
+
+            const ans=await response.json()
+            if (response.ok) {
+            alert(ans.message); 
+          
+        } else {
+          
+            alert(ans.message); 
+        }
+        }
+        catch(e){
+            alert(e.message)
+        }
 
     }
 

@@ -19,4 +19,22 @@ router.post('/signup',async(req,res)=>{
     }
 })
 
+router.post('/login',async(req,res)=>{
+    try{
+        const {email,password}=req.body
+
+        const user= await userSchema.findOne({email})
+
+        if(!user)
+            res.status(404).send({message:'user not found!'})
+        if(user.password!==password)
+            res.status(401).json({message:'invalid password'})
+        
+        res.send({message:'login successfull'})
+    }
+    catch(e){
+        res.send({message:e.message})
+    }
+})
+
 module.exports=router
