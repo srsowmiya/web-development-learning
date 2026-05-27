@@ -14,50 +14,51 @@ app.get('/',(req,res)=>{
     res.send("Home page request") 
 })
 
-const advices = {
-    happy: [
-        "Spread your happiness to others around you!",
-        "Use this energy to tackle your pending tasks!",
-        "Call a friend and make their day too!",
-        "Start that project you've been procrastinating!",
-        "Celebrate small wins, you deserve it!"
+const jokes = {
+    programming: [
+        "Why do programmers prefer dark mode? Because light attracts bugs! 😂",
+        "Why do Java developers wear glasses? Because they don't C#!",
+        "A SQL query walks into a bar, walks up to two tables and asks... 'Can I join you?'",
+        "Why was the JavaScript developer sad? Because he didn't Node how to Express himself!",
+        "How many programmers does it take to change a light bulb? None, that's a hardware problem!"
     ],
-    sad: [
-        "It's okay to cry, let it all out!",
-        "Talk to someone you trust!",
-        "Go for a walk, fresh air helps!",
-        "Watch your favorite comfort movie!",
-        "Remember, this feeling is temporary!"
+    dad: [
+        "Why don't scientists trust atoms? Because they make up everything!",
+        "I told my wife she was drawing her eyebrows too high. She looked surprised!",
+        "Why can't you give Elsa a balloon? Because she'll let it go!",
+        "What do you call a fish without eyes? A fsh!",
+        "Why did the scarecrow win an award? Because he was outstanding in his field!"
     ],
-    angry: [
-        "Take 10 deep breaths before reacting!",
-        "Go for a run, burn that energy!",
-        "Write down what's bothering you!",
-        "Don't make decisions when you're angry!",
-        "Drink some cold water and calm down!"
+    dark: [
+        "I have a joke about construction, but I'm still working on it!",
+        "I told a joke about paper... it was tearable!",
+        "Why don't skeletons fight each other? They don't have the guts!",
+        "What's the best thing about Switzerland? I don't know, but the flag is a big plus!",
+        "I used to hate facial hair, but then it grew on me!"
     ],
-    anxious: [
-        "Focus on what you can control!",
-        "Try the 5-4-3-2-1 grounding technique!",
-        "Breathe in for 4 seconds, out for 4 seconds!",
-        "Break your problems into smaller tasks!",
-        "Avoid caffeine, it makes anxiety worse!"
+    school: [
+        "Why did the student eat his homework? Because the teacher told him it was a piece of cake!",
+        "Why did the math book look so sad? Because it had too many problems!",
+        "What do you call a student who never pays attention? A graduation risk!",
+        "Why did the teacher wear sunglasses? Because her students were so bright!",
+        "What's a math teacher's favorite season? Sum-mer!"
     ],
-    bored: [
-        "Learn something new today!",
-        "Pick up a book you've been ignoring!",
-        "Try cooking a new recipe!",
-        "Go outside and touch some grass! 😂",
-        "Start a side project!"
-    ],
-    tired: [
-        "Take a 20 minute power nap!",
-        "Hydrate yourself, drink more water!",
-        "Don't fight it, rest when needed!",
-        "Light stretching can boost your energy!",
-        "Step away from screens for a while!"
+    animals: [
+        "Why don't elephants use computers? Because they're afraid of the mouse!",
+        "What do you call a sleeping dinosaur? A dino-snore!",
+        "Why did the cat sit on the computer? To keep an eye on the mouse!",
+        "What do you call a fish that wears a crown? King of the sea-bass!",
+        "Why did the dog sit in the shade? Because he didn't want to be a hot dog!"
     ]
 }
+
+app.post('/joke',(req,res)=>{
+    const {mood} =req.body
+    const arr=jokes[mood]
+    let ind=Math.floor(Math.random()*5)
+    const joke=arr[ind]
+    res.json(joke)
+})
 
 
 
