@@ -1,44 +1,77 @@
-import {useState} from 'react'
-const Login = () => {
-    const [username,setUsername]=useState("")
-    const [password,setPassword]=useState("")
+import { useState } from "react";
 
-    async function  handleClick(e){
-        e.preventDefault()
-        const data={
-            username,
-            password
-        }
-        const response = await fetch("http://localhost:3000/login",{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify(data)
-        })
-        if(response.ok){
-            const res=await response.json()
-            console.log(res)
-        }
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function handleClick(e) {
+    e.preventDefault();
+
+    const data = {
+      email,
+      password,
+    };
+
+    try {
+      const response = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        alert("Login successful");
+      } else {
+        const msg = await response.text();
+        alert(msg);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Server not reachable");
     }
-    
+  }
+
   return (
     <div style={styles.wrap}>
       <div style={styles.card}>
-        <p style={styles.title}>Sign in</p>
-        <form action="" onSubmit={handleClick}>
+        <p style={styles.title}>Sign In</p>
 
-        <div style={styles.field}>
-          <label htmlFor="username" style={styles.label}>Username</label>
-          <input type="text" id="username" placeholder="Enter username" style={styles.input} onChange={(e) => setUsername(e.target.value)}/>
-        </div>
+        <form onSubmit={handleClick}>
+          <div style={styles.field}>
+            <label htmlFor="email" style={styles.label}>
+              Email
+            </label>
 
-        <div style={styles.field}>
-          <label htmlFor="password" style={styles.label}>Password</label>
-          <input type="password" id="password" placeholder="Enter password" style={styles.input} onChange={(e) => setPassword(e.target.value)} />
-        </div>
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter email"
+              style={styles.input}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
 
-        <button style={styles.btn} >Submit</button>
+          <div style={styles.field}>
+            <label htmlFor="password" style={styles.label}>
+              Password
+            </label>
+
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter password"
+              style={styles.input}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+
+          <button type="submit" style={styles.btn}>
+            Submit
+          </button>
         </form>
       </div>
     </div>
