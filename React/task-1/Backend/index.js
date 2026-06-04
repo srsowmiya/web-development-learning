@@ -1,63 +1,27 @@
 const express=require('express')
-const  cors=require('cors')
-const bcrypt=require('bcrypt')
+const cors=require('cors')
 
 const app=express()
 app.use(cors({
     origin:"*"
 }))
+let arr=[]
 app.use(express.json())
 
-const arr=[]
-
-app.post('/login', async (req, res) => {
+app.post('/add',(req,res)=>{
+    let msg=req.body.notes
+    console.log(msg)
+    arr.push(msg)
     console.log(arr)
-    const { email, password } = req.body;
-
-    try {
-
-        const user = arr.find(
-            l => l.email === email
-        );
-
-        if (!user) {
-            return res.status(404).send("User not found");
-        }
-
-        const match = await bcrypt.compare(
-            password,
-            user.password
-        );
-
-        if (match) {
-            res.send("Login successful");
-        } else {
-            res.status(401).send("Invalid password");
-        }
-
-    } catch (err) {
-        res.status(500).send("Server Error");
-    }
-
-});
-
-app.post('/signin',async(req,res)=>{
-    const {email,password} = req.body
-    const hashed=await bcrypt.hash(password,10)
-    try{
-        arr.push({
-            email,
-            password:hashed
-        })
-        res.send(arr[0]);
-    }
-    catch(e)
-    {
-        res.status(500).send(e.message)
-    }
+    res.send("success")
 })
 
+app.get('/find',(req,res)=>{
+    let ind=Number(req.query.index)
+    console.log(arr[ind])
+    res.send(arr[ind])
+})
 
 app.listen(3000,()=>{
-    console.log("port started listening on 3000")
+    console.log("the port started listening on 3000")
 })
