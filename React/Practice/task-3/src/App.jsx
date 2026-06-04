@@ -1,10 +1,12 @@
-import {useState} from 'react'
+import GiftBox from './GiftBox'
+import Chocolate from './Chocolate'
 function App(){
-  const [login,setLogin]=useState("false")
+  
   return(
     <>
-      { login ? <h1>Login successful</h1>:<h1>Please Login</h1>}
-      <button onClick={()=>{setLogin(!login)}}>Toggle</button>
+     <GiftBox>
+      <Chocolate/>
+     </GiftBox>
     </>
   )
 }
