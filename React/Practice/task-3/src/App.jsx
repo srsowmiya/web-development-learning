@@ -7,7 +7,7 @@ function App(){
     <>
      <h1>Hello world</h1>
      <input type='text' ref={inputRef} onChange={(e)=>{setVal(e.target.value)}}/>
-     <button onClick={()=>{inputRef.current.focus()}}>Focus button</button>
+     <button onClick={()=>{inputRef.current.select()}}>Focus button</button>
      <h2>{val}</h2>
     </>
   )
