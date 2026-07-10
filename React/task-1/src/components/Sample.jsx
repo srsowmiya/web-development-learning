@@ -1,12 +1,14 @@
-import React from 'react'
+import {useState,useEffect} from 'react'
 
-const date=new Date()
 const Sample = () => {
+  const [count,setCount]=useState(0)
+  useEffect(()=>{
+    console.log('rendered')
+  },[count])
   return (
-    <div>
-      <h1>Hello World</h1>
-      <h1>{date.getDay()}</h1>
-    </div>
+    <>
+      <button onClick={()=>{setCount(count+1)}} style={{height:'50px',width:'50px'}}>{count}</button>
+    </>
   )
 }
 
