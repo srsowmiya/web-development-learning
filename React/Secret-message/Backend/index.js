@@ -4,22 +4,8 @@ const app=express()
 
 app.use(cors())
 
-app.get('/code',(req,res)=>{
-  const lowercase = 'abcdefghijklmnopqrstuvwxyz'
-  const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  const numbers   = '0123456789'
-  const symbols   = '!@#$%^&*()_+-=[]{}|;:,.<>?'
-
-  const allchar=lowercase+uppercase+numbers+symbols
-  let  result=""
-  for(let i=0;i<8;i++)
-  {
-    let ind=Math.floor(Math.random()*allchar.length)
-    result+=allchar[ind]
-  }
-
-  console.log(result)
-  res.json({ result });
+app.post('/notes',(req,res)=>{
+  const notes=req.body.message
 })
 
 
