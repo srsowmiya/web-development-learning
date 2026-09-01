@@ -6,6 +6,9 @@ app.use(cors())
 
 app.post('/notes',(req,res)=>{
   const notes=req.body.message
+  const querry=`
+  INSERT INTO notes_app(?,?,?,?) values()`  }
+  
 })
 
 
