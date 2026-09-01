@@ -6,7 +6,7 @@ const App = () => {
 
 
   async function handleMessage(){
-    const res=await fetch('http://localhost:5000/message',{
+    const res=await fetch('http://localhost:5000/notes',{
       method:'POST',
       headers:{
         'Content-Type':'application/json'
@@ -23,7 +23,7 @@ const App = () => {
     <div>
         <h1>Notes-App</h1>
         <input type='text' onChange={(e)=>{setMessage(e.target.value)}}/>
-        <button onClick={handleMessage}></button>
+        <button onClick={handleMessage}>Send</button>
         <h3>{message}</h3>
     </div>
   )
