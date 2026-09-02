@@ -14,10 +14,9 @@ const App = () => {
       },
       body:JSON.stringify({
         title:title,
-        content:message,
-        user_id:1,
+        content:message
       })
-    })
+    })  
     if(res.ok){
       const data=await res.json()
       setMessage(data.result)

@@ -4,14 +4,15 @@ const app=express()
 const db = require('./db');
 
 app.use(cors())
+app.use(express.json());
 
 app.post('/notes',(req,res)=>{
-   const { title, content,  user_id } = req.body;
-  const sql=`INSERT INTO notes(title,content,user_id) values(?,?,?,?)`
+   const { title, content } = req.body;
+  const sql=`INSERT INTO notes(title,content) values(?,?)`
 
   db.query(
     sql,
-    [title, content, user_id],
+    [title, content],
     (err, result) => {
         if (err) {
             console.log(err);
