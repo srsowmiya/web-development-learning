@@ -6,12 +6,12 @@ const db = require('./db');
 app.use(cors())
 
 app.post('/notes',(req,res)=>{
-  const notes=req.body.message
-  const sql=`INSERT INTO notes(title,content,category,user_id) values(?,?,?,?)`
+   const { title, content,  user_id } = req.body;
+  const sql=`INSERT INTO notes(title,content,user_id) values(?,?,?,?)`
 
   db.query(
     sql,
-    [title, content, category, user_id],
+    [title, content, user_id],
     (err, result) => {
         if (err) {
             console.log(err);

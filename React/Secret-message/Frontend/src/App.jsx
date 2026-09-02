@@ -6,12 +6,17 @@ const App = () => {
 
 
   async function handleMessage(){
+    const title = message.split("\n")[0].trim() || "No Subject";
     const res=await fetch('http://localhost:5000/notes',{
       method:'POST',
       headers:{
         'Content-Type':'application/json'
       },
-      body:JSON.stringify({message})
+      body:JSON.stringify({
+        title:title,
+        content:message,
+        user_id:1,
+      })
     })
     if(res.ok){
       const data=await res.json()
@@ -22,7 +27,7 @@ const App = () => {
   return (
     <div>
         <h1>Notes-App</h1>
-        <input type='text' onChange={(e)=>{setMessage(e.target.value)}}/>
+        <textarea placeholder="Enter the title" onChange={(e)=>{setMessage(e.target.value)}}/>
         <button onClick={handleMessage}>Send</button>
         <h3>{message}</h3>
     </div>
